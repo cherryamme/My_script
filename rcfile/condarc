@@ -1,0 +1,17 @@
+channels:
+  - defaults
+show_channel_urls: true
+default_channels:
+  - http://192.168.3.28/anaconda/pkgs/main
+  - http://192.168.3.28/anaconda/pkgs/r
+  - http://192.168.3.28/anaconda/pkgs/msys2
+custom_channels:
+  conda-forge: http://192.168.3.28/anaconda/cloud
+  msys2: http://192.168.3.28/anaconda/cloud
+  bioconda: http://192.168.3.28/anaconda/cloud
+  menpo: http://192.168.3.28/anaconda/cloud
+  pytorch: http://192.168.3.28/anaconda/cloud
+  simpleitk: http://192.168.3.28/anaconda/cloud
+auto_activate_base: true
+env_prompt: \033[48;5;240m {default_env} \033[0m
+ssl_verify: false

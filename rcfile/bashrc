@@ -1,0 +1,78 @@
+# .bashrc
+#  author:Jc
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+umask 0002
+export HISTSIZE=20000000
+export HISTFILESIZE=20000000
+# export TIME_STYLE="+%Y-%m-%d %H:%M:%S"
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+export PATH=~/00_software/:$PATH
+export PATH=~/00_software/miniconda3/bin/:/home/fuxiangke/software/Miniconda3/envs/cromwell/bin/:$PATH
+# export CONDA=~/00_software/miniconda3
+
+alias sudo='sudo env PATH=$PATH env SGE_ROOT=$SGE_ROOT'
+
+export PS1="\[\033[48;5;7m\] \t \[\033[48;2;\$((RANDOM/128));\$((RANDOM/128));\$((RANDOM/128))m\] \$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\u@\h \[\033[1;48;5;32m\] \w \[\033[0m\]\n \[\033[32m\]>>> \[\033[0m\]"
+
+# conda config --set env_prompt "\033[48;5;240m \({default_env}\) \033[0m $PS1"
+
+#User specific aliases and function
+alias rsync='rsync -a --progress -v --human-readable'
+alias l='ls -lhtr --color=auto'
+alias ..='cd ../'
+alias w1='watch -d -n 1'
+alias w2='watch -d -n 2'
+alias w5='watch -d -n 5'
+alias ...='cd .../'
+alias cdd='cd /dfsyt1/B2C_RD_S1/USER/jiangchen2'
+alias ls='ls --color=auto'
+alias ll='ls -alh --color=auto'
+alias h='head'
+alias t='tail'
+alias g='grep'
+alias le='less -S'
+alias wl='wc -l'
+alias la='ls -ah'
+## 修改至profile
+# alias lc='ls -l | wc -l'
+# alias lp='ls --color=auto -d $PWD/*'
+# alias lP='ls --color=auto -d $(pwd -P)/*'
+alias pip="pip --no-cache-dir --trusted-host 10.2.1.28"
+alias fzf="/dfsyt1/B2C_RD_S1/USER/jiangchen2/miniconda3/bin/fzf "
+alias fd1="find -L . -maxdepth 1 -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc'  -prune -o -type d -print 2> /dev/null | cut -b3-"
+alias fd2="find -L . -maxdepth 2 -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc'  -prune -o -type d -print 2> /dev/null | cut -b3-"
+alias fd3="find -L . -maxdepth 3 -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc'  -prune -o -type d -print 2> /dev/null | cut -b3-"
+alias fd4="find -L . -maxdepth 4 -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc'  -prune -o -type d -print 2> /dev/null | cut -b3-"
+alias treed1='tree -d -L 1'
+alias treed2='tree -d -L 2'
+alias treed3='tree -d -L 3'
+alias qsub5='qsub -cwd -l vf=5G,p=2 -P B2C_RDS -S /bin/bash -q b2c_rd_s1.q'
+alias qsub10='qsub -cwd -l vf=10G,p=5 -P B2C_RDS -S /bin/bash -q b2c_rd_s1.q'
+alias qsub20='qsub -cwd -l vf=20G,p=10 -P B2C_RDS -S /bin/bash -q b2c_rd_s1.q'
+alias qsub50='qsub -cwd -l vf=50G,p=20 -P B2C_RDS -S /bin/bash -q b2c_rd_s1.q'
+eval "$(~/jiangchen2/miniconda3/bin/zoxide init bash 2> /dev/null)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/jiangchen2/jiangchen2/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/jiangchen2/jiangchen2/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/jiangchen2/jiangchen2/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/jiangchen2/jiangchen2/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+if [ -f ~/.bash_profile ]; then
+	. ~/.bash_profile
+fi
