@@ -1,7 +1,17 @@
 #!/bin/sh
-
+# HELP="> Usage:  `basename $0` -i input -o outdir
+# > ---------------------------------------
+# >	<input> :	sample_1.fq1.gz
+# >	<output> :	\$outdir
+# >	<config> :	config_file[optional]
+# >	<example> :	`basename $0` -i sample_1.fq1.gz -o \$outdir
+# > ---------------------------------------
+# > author :Jc	date :2023-2-3"
 pattern="$1"
 shift 1
+
+
+
 
 check_file(){
 	for i in ${@}; do
@@ -26,22 +36,28 @@ echo "<Command>: `basename $0` $@"
 while getopts "$pattern" opt; do
   case $opt in
     c)
-	  config="$OPTARG"
-	  check_file $config
-	  echo "<config>: $config"
+	  c="$OPTARG"
+	  check_file $c
+	  echo "<config>: $c"
+	  echo "	loading config: $c"
+	  . $c
 	  ;;
     i)
-      input="$OPTARG"
-	  check_file $input
-	  echo "<input>: $input"
+      i="$OPTARG"
+	  check_file $i
+	  echo "<input>: $i"
       ;;
     s)
-      sample="$OPTARG"
-	  echo "<sample>: $sample"
+      s="$OPTARG"
+	  echo "<sample>: $s"
       ;;
     o)
-      output="$OPTARG"
-	  echo "<output>: $output"
+      o="$OPTARG"
+	  echo "<output>: $o"
+      ;;
+    u)
+      u="$OPTARG"
+	  echo "<input2>: $u"
       ;;
 	h)
 	  usage
@@ -62,7 +78,7 @@ if [ $# -gt 0 ]; then
 fi
 
 ## 检查必需参数是否为空
-if [[ -z "$input" || -z "$output" ]]; then
+if [[ -z "$i" || -z "$o" ]]; then
 	echo -e "ERROR: -i/-o need arguments. \n" 1>&2
 	usage
 	exit 1
